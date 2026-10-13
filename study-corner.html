@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>My Coding Study Corner</title>
+	<link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+	<style>
+		:root {
+			--ink: #17231d;
+			--muted: #64736a;
+			--cream: #f5f2e9;
+			--paper: #fffdf8;
+			--green: #2f6b4f;
+			--lime: #d5ed62;
+			--line: #dfe6da;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--cream); font-family: Georgia, "Times New Roman", serif; }
+		a { color: var(--green); }
+		header { padding: 24px 6vw; border-bottom: 1px solid var(--line); background: var(--paper); }
+		nav { display: flex; align-items: center; justify-content: space-between; max-width: 980px; margin: auto; }
+		.logo { width: 48px; height: 48px; }
+		.nav-links { display: flex; gap: 24px; font-family: Arial, sans-serif; }
+		main { max-width: 980px; margin: auto; padding: 72px 6vw; }
+		h1 { margin: 0 0 22px; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; }
+		h2 { margin-top: 52px; font-size: 2rem; }
+		p, li, dt, dd { font-size: 1.08rem; line-height: 1.7; }
+		.intro { max-width: 650px; color: var(--muted); }
+		.study-links { display: flex; gap: 20px; flex-wrap: wrap; margin: 28px 0; font-family: Arial, sans-serif; }
+		section { padding: 20px 0; border-top: 1px solid var(--line); }
+		dt { font-weight: bold; }
+		dd { margin: 0 0 16px; color: var(--muted); }
+		footer { display: flex; justify-content: space-between; gap: 20px; max-width: 980px; margin: auto; padding: 28px 6vw 42px; font-family: Arial, sans-serif; }
+		@media (max-width: 600px) {
+			nav, footer { align-items: flex-start; flex-direction: column; }
+			.nav-links { flex-wrap: wrap; }
+		}
+	</style>
+</head>
+<body>
+	<!-- Header and site navigation -->
+	<header id="top">
+		<nav aria-label="Main navigation">
+			<a href="index.html"><img class="logo" src="images/logo.svg" alt="Study Corner logo" width="48" height="48" /></a>
+			<div class="nav-links">
+				<a href="index.html">Home</a>
+				<a href="planner.html">Planner</a>
+				<a href="assistant.html">Assistant</a>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Main introduction -->
+	<main>
+		<h1>Coding</h1>
+		<p class="intro">Coding is the creative process of giving instructions to a computer.<br />It helps me turn ideas into <b>useful</b> projects and solve problems in an <i>imaginative</i> way.</p>
+
+		<!-- Links about this subject -->
+		<div class="study-links">
+			<a href="https://en.wikipedia.org/wiki/Computer_programming" title="Read about computer programming on Wikipedia">Learn more about coding</a>
+			<a href="#how-i-study-it">Jump to how I study it</a>
+		</div>
+
+		<!-- Reasons I like the subject -->
+		<section id="why-i-like-it">
+			<h2>Why I like it</h2>
+			<ul>
+				<li>I can build useful things from simple ideas.</li>
+				<li>There is always something new to learn.</li>
+				<li>Solving bugs feels like solving a puzzle.</li>
+			</ul>
+		</section>
+
+		<!-- Study routine -->
+		<section id="how-i-study-it">
+			<h2>How I study it</h2>
+			<ol>
+				<li>I learn one concept from a lesson or tutorial.</li>
+				<li>I practise it by writing a small example.</li>
+				<li>I review my work and fix any errors.</li>
+			</ol>
+		</section>
+
+		<!-- Important vocabulary -->
+		<section id="words-to-know">
+			<h2>Words to know</h2>
+			<dl>
+				<dt>Algorithm</dt>
+				<dd>A clear set of steps used to solve a problem.</dd>
+				<dt>Bug</dt>
+				<dd>An error in a program that makes it behave unexpectedly.</dd>
+			</dl>
+		</section>
+	</main>
+
+	<!-- Footer and back-to-top link -->
+	<footer>
+		<span>My Coding Study Corner</span>
+		<a href="#top">Back to top</a>
+	</footer>
+</body>
+</html>
