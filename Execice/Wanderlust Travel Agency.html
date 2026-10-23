@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wanderlust Travel Agency - unforgettable journeys made simple.">
+    <title>Wanderlust Travel Agency</title>
+    <style>
+        :root {
+            --ink: #17324d;
+            --muted: #60758a;
+            --blue: #1667a8;
+            --sky: #e8f5fb;
+            --gold: #f4b942;
+            --white: #ffffff;
+            --shadow: 0 14px 35px rgba(18, 49, 76, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8fbfd;
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1120px;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            align-items: center;
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            min-height: 76px;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            color: var(--blue);
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .hero {
+            align-items: center;
+            background: linear-gradient(90deg, rgba(11, 41, 67, 0.78), rgba(11, 41, 67, 0.15)),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85") center/cover;
+            color: var(--white);
+            display: flex;
+            min-height: 570px;
+        }
+
+        .hero-content {
+            max-width: 660px;
+            padding: 80px 24px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 7vw, 5.3rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            max-width: 560px;
+        }
+
+        .button {
+            background: var(--gold);
+            border: 0;
+            border-radius: 7px;
+            color: #1c3141;
+            display: inline-block;
+            font-weight: 800;
+            padding: 13px 23px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ffd16b;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 82px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(1.9rem, 4vw, 2.7rem);
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        .destination-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            height: 215px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .text-link {
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .tours {
+            background: var(--sky);
+        }
+
+        .accordion {
+            display: grid;
+            gap: 12px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        details {
+            background: var(--white);
+            border: 1px solid #d8e7ef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 800;
+            list-style: none;
+            padding: 19px 22px;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            color: var(--blue);
+            content: "+";
+            float: right;
+            font-size: 1.4rem;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        .tour-details {
+            border-top: 1px solid #e5eef3;
+            color: var(--muted);
+            padding: 0 22px 20px;
+        }
+
+        .tour-details .text-link {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .contact-grid {
+            align-items: start;
+            display: grid;
+            gap: 55px;
+            grid-template-columns: 0.85fr 1.15fr;
+        }
+
+        .contact-copy h2 {
+            font-size: 2.4rem;
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .contact-copy p {
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .contact-list {
+            color: var(--muted);
+            display: grid;
+            gap: 9px;
+            list-style: none;
+        }
+
+        form {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 17px;
+            padding: 28px;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 17px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        label {
+            display: grid;
+            font-size: 0.9rem;
+            font-weight: 700;
+            gap: 7px;
+        }
+
+        input, select, textarea {
+            border: 1px solid #cbdce5;
+            border-radius: 5px;
+            font: inherit;
+            padding: 12px;
+            width: 100%;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--blue);
+            outline: 2px solid rgba(22, 103, 168, 0.15);
+        }
+
+        form .button {
+            cursor: pointer;
+            justify-self: start;
+        }
+
+        footer {
+            background: #102d45;
+            color: #d9e7ef;
+            padding: 28px 0;
+        }
+
+        .footer-content {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 17px;
+            list-style: none;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        @media (max-width: 760px) {
+            .navbar {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+                padding: 17px 24px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px 20px;
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            section {
+                padding: 62px 0;
+            }
+
+            .destination-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                gap: 35px;
+            }
+
+            .footer-content {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 18px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a class="logo" href="#home">Wander<span>lust</span></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="eyebrow">Your next story starts here</p>
+                    <h1>Travel farther.<br>Feel more.</h1>
+                    <p>Thoughtfully designed journeys to the world's most inspiring places, made easy from the first click to the final sunset.</p>
+                    <a class="button" href="#destinations">Explore destinations</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="destinations">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Find your escape</p>
+                    <h2>Popular destinations</h2>
+                    <p>Three unforgettable ways to make your next holiday extraordinary.</p>
+                </div>
+                <div class="destination-grid">
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80" alt="White buildings overlooking the sea in Santorini">
+                        <div class="card-content">
+                            <h3>Santorini, Greece</h3>
+                            <p>Discover blue-domed villages, volcanic beaches and unforgettable sunsets over the Aegean.</p>
+                            <a class="text-link" href="#contact">Learn more →</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Traditional temple in Kyoto surrounded by autumn trees">
+                        <div class="card-content">
+                            <h3>Kyoto, Japan</h3>
+                            <p>Walk through ancient temples, peaceful gardens and lively streets filled with local flavor.</p>
+                            <a class="text-link" href="#contact">Learn more →</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80" alt="Rock formations and a river in Iceland">
+                        <div class="card-content">
+                            <h3>Iceland</h3>
+                            <p>Chase the northern lights, explore waterfalls and experience landscapes unlike anywhere else.</p>
+                            <a class="text-link" href="#contact">Learn more →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="tours" id="tours">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Travel your way</p>
+                    <h2>Featured tour packages</h2>
+                    <p>Open a package to see what your journey could look like.</p>
+                </div>
+                <div class="accordion">
+                    <details open>
+                        <summary>Greek Island Discovery · 8 days</summary>
+                        <div class="tour-details">
+                            Sail between Santorini, Mykonos and Naxos with boutique stays, local food experiences and a private sunset cruise.
+                            <br><a class="text-link" href="#contact">View details →</a>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Japan: Tradition &amp; Taste · 10 days</summary>
+                        <div class="tour-details">
+                            Experience Kyoto, Nara and Tokyo with a tea ceremony, guided market tour and scenic bullet-train transfers.
+                            <br><a class="text-link" href="#contact">View details →</a>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Iceland Ring Road Adventure · 7 days</summary>
+                        <div class="tour-details">
+                            Follow Iceland's dramatic coastline with glacier walks, geothermal lagoons and comfortable countryside lodges.
+                            <br><a class="text-link" href="#contact">View details →</a>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container contact-grid">
+                <div class="contact-copy">
+                    <p class="eyebrow">Let's plan something special</p>
+                    <h2>Your dream trip is closer than you think.</h2>
+                    <p>Tell us what inspires you and our travel designers will create a personalized proposal with no obligation.</p>
+                    <ul class="contact-list">
+                        <li>✉ hello@wanderlust.example</li>
+                        <li>☎ +1 555 014 2026</li>
+                        <li>⌖ 24 Ocean Avenue, Miami</li>
+                    </ul>
+                </div>
+                <form action="#" method="post">
+                    <div class="form-row">
+                        <label for="name">Name
+                            <input id="name" name="name" type="text" placeholder="Your name" required>
+                        </label>
+                        <label for="email">Email
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                        </label>
+                    </div>
+                    <label for="destination">Destination of interest
+                        <select id="destination" name="destination" required>
+                            <option value="">Choose a destination</option>
+                            <option>Santorini, Greece</option>
+                            <option>Kyoto, Japan</option>
+                            <option>Iceland</option>
+                            <option>Something else</option>
+                        </select>
+                    </label>
+                    <label for="message">Message
+                        <textarea id="message" name="message" placeholder="Tell us about your ideal trip..." required></textarea>
+                    </label>
+                    <button class="button" type="submit">Send enquiry</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>© 2026 Wanderlust Travel Agency. All rights reserved.</p>
+            <ul class="social-links" aria-label="Social media links">
+                <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                <li><a href="#" aria-label="Pinterest">Pinterest</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
