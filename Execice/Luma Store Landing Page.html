@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luma - modern essentials for everyday living.">
+    <title>Luma | Modern Essentials</title>
+    <style>
+        /* Design tokens keep the store palette consistent and easy to customize. */
+        :root {
+            --ink: #1d252c;
+            --muted: #69757d;
+            --cream: #f8f6f1;
+            --sand: #e9e2d6;
+            --orange: #d8683f;
+            --dark-orange: #b94f2e;
+            --white: #ffffff;
+            --border: #e2ded6;
+            --shadow: 0 12px 30px rgba(29, 37, 44, 0.09);
+        }
+
+        /* Base reset and shared page styles. */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 1160px;
+            padding: 0 24px;
+        }
+
+        /* Header navigation remains simple and wraps cleanly on small screens. */
+        header {
+            align-items: center;
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            min-height: 78px;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .brand {
+            font-size: 1.7rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+        .brand span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 29px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover,
+        .footer-links a:hover {
+            color: var(--orange);
+        }
+
+        .cart {
+            border: 1px solid var(--ink);
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 8px 14px;
+        }
+
+        .cart:hover {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        /* Hero section introduces the brand with a responsive two-column layout. */
+        .hero {
+            align-items: center;
+            background: var(--sand);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 535px;
+        }
+
+        .hero-copy {
+            padding: 80px max(24px, calc((100vw - 1112px) / 2));
+            padding-right: 55px;
+        }
+
+        .eyebrow {
+            color: var(--orange);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.17em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.7rem, 5vw, 5rem);
+            letter-spacing: -0.04em;
+            line-height: 1.02;
+            margin-bottom: 22px;
+            max-width: 540px;
+        }
+
+        .hero-copy p:not(.eyebrow) {
+            color: var(--muted);
+            font-size: 1.08rem;
+            margin-bottom: 30px;
+            max-width: 480px;
+        }
+
+        .button {
+            background: var(--orange);
+            border: 0;
+            border-radius: 4px;
+            color: var(--white);
+            display: inline-block;
+            font-size: 0.88rem;
+            font-weight: 800;
+            padding: 13px 22px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background: var(--dark-orange);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            height: 100%;
+            min-height: 535px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Product grid displays four cards on desktop and collapses with media queries. */
+        .products {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            align-items: end;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 350px;
+        }
+
+        .product-grid {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .product-card {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            background: #eee9e1;
+            height: 270px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .product-info {
+            padding: 19px;
+        }
+
+        .product-info h3 {
+            font-size: 1.12rem;
+            margin-bottom: 5px;
+        }
+
+        .product-info p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            min-height: 51px;
+        }
+
+        .product-bottom {
+            align-items: center;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 14px;
+        }
+
+        .price {
+            font-weight: 800;
+        }
+
+        .small-button {
+            color: var(--orange);
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .small-button:hover {
+            color: var(--dark-orange);
+        }
+
+        /* Promotional banner adds a secondary call to action below the products. */
+        .promo {
+            background: var(--ink);
+            color: var(--white);
+            padding: 65px 0;
+        }
+
+        .promo-content {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .promo h2 {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            line-height: 1.15;
+            margin-bottom: 9px;
+        }
+
+        .promo p {
+            color: #bbc3c7;
+        }
+
+        .promo .button {
+            flex-shrink: 0;
+        }
+
+        /* Footer contains the store details and navigation links. */
+        footer {
+            background: #131a1f;
+            color: #dce1e3;
+            padding: 42px 0 25px;
+        }
+
+        .footer-top {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            padding-bottom: 35px;
+        }
+
+        .footer-top p {
+            color: #9da9ae;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            max-width: 270px;
+        }
+
+        .footer-title {
+            color: var(--white);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            color: #9da9ae;
+            display: grid;
+            font-size: 0.9rem;
+            gap: 7px;
+            list-style: none;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #303a40;
+            color: #819097;
+            display: flex;
+            font-size: 0.78rem;
+            justify-content: space-between;
+            padding-top: 20px;
+        }
+
+        /* Tablet layout keeps cards readable while reducing the number per row. */
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-image {
+                height: 300px;
+            }
+        }
+
+        /* Mobile layout stacks all major areas and makes navigation wrap. */
+        @media (max-width: 680px) {
+            header {
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 14px;
+                padding: 17px 24px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 9px 18px;
+                order: 3;
+                width: 100%;
+            }
+
+            .cart {
+                margin-left: auto;
+            }
+
+            .hero {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .hero-copy {
+                padding: 70px 24px;
+                width: 100%;
+            }
+
+            .hero-image {
+                min-height: 340px;
+            }
+
+            .products {
+                padding: 65px 0;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .promo-content {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-top > :first-child {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .hero-copy {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 320px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top > :first-child {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Site header and navigation links connect the main sections. -->
+    <header>
+        <a class="brand" href="#home">L<span>U</span>MA</a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a class="cart" href="#shop">Bag (0)</a>
+    </header>
+
+    <main>
+        <!-- Hero banner introduces the collection and primary shopping action. -->
+        <section class="hero" id="home">
+            <div class="hero-copy">
+                <p class="eyebrow">The everyday edit</p>
+                <h1>Good design for everyday living.</h1>
+                <p>Thoughtful objects, considered materials and timeless details. Meet the new collection from Luma.</p>
+                <a class="button" href="#shop">Shop the collection</a>
+            </div>
+            <img class="hero-image" src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1200&q=85" alt="Minimal living room with a modern chair and plant">
+        </section>
+
+        <!-- Product cards provide the required name, description, image and shop action. -->
+        <section class="products" id="shop">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Curated for you</p>
+                        <h2>Best sellers</h2>
+                    </div>
+                    <p>Simple pieces that bring comfort and character to your space.</p>
+                </div>
+                <div class="product-grid">
+                    <article class="product-card">
+                        <img class="product-image" src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80" alt="Handmade ceramic vase on a table">
+                        <div class="product-info">
+                            <h3>Terra Vase</h3>
+                            <p>Hand-finished ceramic with a warm, organic silhouette.</p>
+                            <div class="product-bottom">
+                                <span class="price">$48</span>
+                                <a class="small-button" href="#contact">Shop now →</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img class="product-image" src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Modern table lamp beside a book">
+                        <div class="product-info">
+                            <h3>Glow Table Lamp</h3>
+                            <p>Soft ambient light in a sculptural, brushed-metal frame.</p>
+                            <div class="product-bottom">
+                                <span class="price">$92</span>
+                                <a class="small-button" href="#contact">Shop now →</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img class="product-image" src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80" alt="Folded neutral linen throw blanket">
+                        <div class="product-info">
+                            <h3>Linen Throw</h3>
+                            <p>Lightweight, textured linen made for slow Sunday mornings.</p>
+                            <div class="product-bottom">
+                                <span class="price">$64</span>
+                                <a class="small-button" href="#contact">Shop now →</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <img class="product-image" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800&q=80" alt="Wooden desk with notebook and coffee">
+                        <div class="product-info">
+                            <h3>Oak Desk Set</h3>
+                            <p>Minimal desk essentials crafted to inspire clear thinking.</p>
+                            <div class="product-bottom">
+                                <span class="price">$76</span>
+                                <a class="small-button" href="#contact">Shop now →</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional block gives customers a reason to join the mailing list. -->
+        <section class="promo" id="about">
+            <div class="container promo-content">
+                <div>
+                    <h2>Make room for better.</h2>
+                    <p>Join our community and get 10% off your first order.</p>
+                </div>
+                <a class="button" href="#contact">Join the list</a>
+            </div>
+        </section>
+
+        <!-- Contact callout completes the landing-page conversion path. -->
+        <section class="products" id="contact">
+            <div class="container section-heading">
+                <div>
+                    <p class="eyebrow">Need a hand?</p>
+                    <h2>We would love to hear from you.</h2>
+                </div>
+                <p>Questions about a product or your order? Email hello@luma.example and our team will get back to you soon.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer provides secondary navigation and store information. -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <a class="brand" href="#home">L<span>U</span>MA</a>
+                    <p>Modern essentials designed for a more considered everyday.</p>
+                </div>
+                <div>
+                    <p class="footer-title">Explore</p>
+                    <ul class="footer-links">
+                        <li><a href="#shop">All products</a></li>
+                        <li><a href="#about">Our story</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Follow along</p>
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Luma Store. All rights reserved.</span>
+                <span>Made with intention.</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
